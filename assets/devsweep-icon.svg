@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"
+     viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">DevSweep</title>
+  <desc id="desc">An electric-blue D with a diagonal sweep cut, on an ink-black tile.</desc>
+  <defs>
+    <path id="letter-d" fill-rule="evenodd"
+          d="M112 96H248C352 96 424 160 424 256S352 416 248 416H112Z
+             M200 184V328H248C300 328 336 300 336 256S300 184 248 184Z"/>
+    <clipPath id="upper"><path d="M0 0H512V141L0 312Z"/></clipPath>
+    <clipPath id="lower"><path d="M0 348L512 177V512H0Z"/></clipPath>
+  </defs>
+  <rect id="background" x="32" y="32" width="448" height="448" rx="100" fill="#111216"/>
+  <g id="mark" transform="translate(-12 0)" fill="#2D81FF">
+    <use href="#letter-d" clip-path="url(#upper)"/>
+    <use href="#letter-d" clip-path="url(#lower)"/>
+  </g>
+</svg>
