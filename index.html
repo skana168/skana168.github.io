@@ -1,125 +1,393 @@
 <!doctype html>
-<html lang="zh-CN" data-title-zh="Skana · 独立开发者" data-title-en="Skana · Independent developer">
+<html lang="zh-CN" data-title-zh="Skana · 一个人的软件工作室" data-title-en="Skana · A one-person software studio">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Skana · 独立开发者</title>
-<meta name="description" content="Skana 的作品集：DevSweep 与 Moment Bloom，两个本地优先的应用。 / Skana's portfolio: DevSweep and Moment Bloom, two local-first apps.">
+<title>Skana · 一个人的软件工作室</title>
+<meta name="description" content="Skana 是一个人的软件工作室，做本地优先的工具：DevSweep 与 Moment Bloom。 / Skana is a one-person software studio making local-first tools: DevSweep and Moment Bloom.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Skana · 一个人的软件工作室">
+<meta property="og:description" content="本地优先的工具，一个人做。DevSweep 与 Moment Bloom。">
+<meta property="og:url" content="https://skana168.github.io/">
+<meta property="og:image" content="https://skana168.github.io/assets/devsweep-main.png">
+<meta property="og:image:width" content="2720">
+<meta property="og:image:height" content="900">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="styles.css">
-<script src="main.js"></script>
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --ink: #000000;
+    --muted: #5C5C5C;
+    --line: #DADADA;
+    --line-strong: #000000;
+    --blue: #0000EE;
+    --orange: #FF433D;
+    --orange-text: #B72C12;
+    --soft: #F6F6F4;
+    --sans: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --page: 1360px;
+    --gutter: clamp(1rem, .3rem + 3.4vw, 3.25rem);
+    --ease: cubic-bezier(.22, 1, .36, 1);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { color-scheme: light; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 1rem; line-height: 1.6; overflow-wrap: break-word; }
+  h1, h2, h3, p, ol, ul, dl, dd, figure { margin: 0; }
+  ol, ul { padding: 0; list-style: none; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  button { border: 0; background: none; font: inherit; color: inherit; }
+  ::selection { background: var(--blue); color: #fff; }
+  :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+  .on-dark :focus-visible { outline-color: var(--orange); }
+  html[lang="zh-CN"] .bi > [lang="en"],
+  html[lang="en"] .bi > [lang="zh-CN"] { display: none; }
+  .blue { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .blue:hover { color: var(--orange-text); }
+
+  .skip { position: fixed; top: 8px; left: 8px; z-index: 50; padding: .75rem 1rem; background: var(--ink); color: #fff; font-family: var(--mono); font-size: .75rem; text-decoration: none; transform: translateY(-200%); }
+  .skip:focus { transform: none; }
+  .page { width: 100%; max-width: calc(var(--page) + var(--gutter) * 2); margin-inline: auto; padding-inline: var(--gutter); }
+  .mono { font-family: var(--mono); font-size: .75rem; line-height: 1.5; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+  .grid12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 1.25rem; }
+
+  /* masthead */
+  .masthead { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,.96); border-bottom: 3px solid var(--ink); backdrop-filter: blur(8px); }
+  .masthead__top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: .4rem; border-bottom: 1px solid var(--ink); font-family: var(--mono); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; }
+  .masthead__nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem 1rem; padding-block: .45rem; }
+  .brand { font-size: 1.35rem; font-weight: 800; letter-spacing: -.03em; text-decoration: none; }
+  .brand span { color: var(--orange-text); }
+  .nav { display: flex; flex-wrap: wrap; align-items: center; gap: .15rem 1.1rem; }
+  .nav a { display: inline-flex; align-items: center; min-height: 40px; font-family: var(--mono); font-size: .75rem; letter-spacing: .03em; text-decoration: none; color: var(--ink); }
+  .nav a:hover { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+  .head-right { display: flex; align-items: center; gap: .4rem; }
+  .gh { display: none; align-items: center; min-height: 40px; font-family: var(--mono); font-size: .75rem; letter-spacing: .03em; text-decoration: none; }
+  .gh:hover { color: var(--blue); }
+  .lang { display: flex; align-items: center; }
+  .lang button { min-width: 40px; min-height: 40px; font-family: var(--mono); font-size: .75rem; color: var(--muted); cursor: pointer; }
+  .lang button[aria-pressed="true"] { color: var(--ink); font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; text-decoration-color: var(--orange-text); }
+
+  /* hero */
+  .hero { padding-block: 1.5rem 1.75rem; border-bottom: 3px solid var(--ink); }
+  .hero__grid { align-items: start; }
+  .hero__main { grid-column: 1 / 9; min-width: 0; }
+  .hero h1 { font-size: clamp(3.4rem, 1.4rem + 6.2vw, 7.2rem); font-weight: 800; line-height: .92; letter-spacing: -.07em; }
+  html[lang="en"] .hero h1 { font-size: clamp(2.6rem, 1rem + 5vw, 5.7rem); letter-spacing: -.055em; }
+  .hero h1 .accent { color: var(--orange-text); }
+  .hero__deck { max-width: 38rem; margin-top: 1.1rem; font-size: clamp(1.0625rem, .95rem + .3vw, 1.1875rem); line-height: 1.55; color: #222; }
+  .hero__links { display: flex; flex-wrap: wrap; gap: .3rem 1.25rem; margin-top: .9rem; }
+  .hero__links a { font-family: var(--mono); font-size: .75rem; letter-spacing: .03em; }
+
+  .hero__side { grid-column: 9 / 13; min-width: 0; border-left: 1px solid var(--ink); padding-left: .9rem; }
+  .hero__side .label { font-family: var(--mono); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  .index-row { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr) auto; gap: .45rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+  .index-row:first-of-type { border-top: 1px solid var(--ink); }
+  .index-row__num { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+  .index-row__name { font-size: 1.05rem; font-weight: 700; letter-spacing: -.02em; }
+  .index-row__meta { grid-column: 2 / 4; font-family: var(--mono); font-size: .75rem; line-height: 1.45; color: var(--muted); }
+  .index-row__arrow { font-family: var(--mono); font-size: .75rem; color: var(--blue); }
+  .index-row:hover .index-row__name { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+  .index-row--next .index-row__arrow { color: var(--orange-text); }
+  .hero__stats { display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin-top: .7rem; font-family: var(--mono); font-size: .75rem; letter-spacing: .03em; color: var(--muted); }
+
+  /* briefs */
+  .briefs { padding-block: 1.25rem 2rem; border-bottom: 3px solid var(--ink); }
+  .briefs__head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: .45rem; border-bottom: 1px solid var(--ink); font-family: var(--mono); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; }
+  .briefs__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .brief { padding: .9rem .9rem .9rem 0; border-bottom: 1px solid var(--line); min-width: 0; }
+  .brief:last-child { border-bottom: 0; }
+  .brief__top { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; }
+  .brief__num { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+  .brief__state { font-family: var(--mono); font-size: .75rem; letter-spacing: .04em; text-transform: uppercase; color: var(--blue); }
+  .brief:nth-child(3) .brief__state { color: var(--orange-text); }
+  .brief h3 { margin-top: .3rem; font-size: 1.55rem; line-height: 1.05; letter-spacing: -.04em; font-weight: 800; }
+  .brief h3 small { display: block; margin-top: .2rem; font-family: var(--mono); font-size: .75rem; font-weight: 400; letter-spacing: .03em; color: var(--muted); }
+  .brief p { margin-top: .5rem; font-size: .875rem; line-height: 1.55; color: #222; }
+  .brief__meta { margin-top: .45rem; font-family: var(--mono); font-size: .875rem; line-height: 1.5; letter-spacing: .02em; color: var(--muted); }
+  .brief__media { margin-top: .65rem; border: 1px solid var(--ink); padding: .3rem; background: #fff; }
+  .brief__media img { width: 100%; }
+  .brief__media--phone { background: var(--ink); padding: .6rem; display: flex; align-items: center; justify-content: center; }
+  .brief__media--phone img { width: auto; height: 140px; border: 2px solid #333; border-radius: 10px; }
+  .brief__links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin-top: .5rem; }
+  .brief__links a { font-family: var(--mono); font-size: .75rem; letter-spacing: .03em; }
+  .brief--next { background: repeating-linear-gradient(135deg, #fff 0 9px, #F4F4F2 9px 18px); }
+  .brief--next .brief__empty { margin-top: .65rem; border: 1px dashed var(--ink); min-height: 6rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25rem; text-align: center; }
+  .brief--next .brief__empty b { font-family: var(--mono); font-size: .75rem; letter-spacing: .06em; color: var(--orange-text); }
+  .brief--next .brief__empty span { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+
+  /* manifesto */
+  .manifesto { background: var(--ink); color: #fff; padding-block: 1.5rem 1.75rem; border-bottom: 3px solid var(--ink); }
+  .manifesto__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .manifesto__item { border-left: 4px solid var(--orange); padding-left: .8rem; }
+  .manifesto__item b { display: block; font-size: clamp(1.4rem, 1rem + 1.6vw, 2.2rem); line-height: .98; letter-spacing: -.04em; }
+  .manifesto__item span { display: block; margin-top: .25rem; font-family: var(--mono); font-size: .75rem; line-height: 1.45; letter-spacing: .03em; color: rgba(255,255,255,.62); }
+  .manifesto__note { font-family: var(--mono); font-size: .75rem; line-height: 1.5; color: rgba(255,255,255,.58); }
+
+  /* principles */
+  .principles { padding-block: 1.5rem 2rem; border-bottom: 3px solid var(--ink); }
+  .principles__head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: .45rem; border-bottom: 1px solid var(--ink); font-family: var(--mono); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; }
+  .principles__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .principle { padding: .8rem .9rem .8rem 0; border-bottom: 1px solid var(--line); }
+  .principle:last-child { border-bottom: 0; }
+  .principle__num { font-family: var(--mono); font-size: .75rem; color: var(--orange-text); }
+  .principle h3 { margin-top: .25rem; font-size: 1.05rem; font-weight: 700; letter-spacing: -.02em; }
+  .principle p { margin-top: .2rem; font-size: .875rem; line-height: 1.5; color: #222; }
+
+  /* studio */
+  .studio { padding-block: 1.75rem 2.25rem; border-bottom: 3px solid var(--ink); }
+  .studio__grid { align-items: start; }
+  .studio__copy { grid-column: 1 / 7; }
+  .studio__side { grid-column: 8 / 13; }
+  .studio h2 { margin-top: .4rem; font-size: clamp(2rem, 1.2rem + 2.8vw, 3.6rem); line-height: 1.02; letter-spacing: -.05em; font-weight: 800; }
+  .studio p { margin-top: .75rem; max-width: 34rem; font-size: .9375rem; line-height: 1.6; color: #222; }
+  .colophon { border-top: 1px solid var(--ink); }
+  .colophon div { display: flex; justify-content: space-between; gap: 1rem; padding: .4rem 0; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: .875rem; letter-spacing: .02em; }
+  .colophon div span:last-child { color: var(--muted); text-align: right; }
+
+  /* cta */
+  .cta { background: var(--ink); color: #fff; padding-block: 2rem 2.25rem; }
+  .cta .mono { color: rgba(255,255,255,.55); }
+  .cta h2 { margin-top: .3rem; font-size: clamp(2.4rem, 1.2rem + 4.4vw, 5.6rem); line-height: .95; letter-spacing: -.06em; font-weight: 800; }
+  .cta h2 a { color: #fff; text-decoration: underline; text-decoration-color: var(--orange); text-decoration-thickness: 4px; text-underline-offset: .08em; }
+  .cta h2 a:hover { color: var(--orange); }
+  .cta__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.25rem; margin-top: 1.1rem; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 .9rem; background: #fff; color: var(--ink); font-family: var(--mono); font-size: .75rem; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; }
+  .btn:hover { background: var(--orange); color: var(--ink); }
+  .cta .link-u { color: #fff; font-family: var(--mono); font-size: .75rem; text-decoration: underline; text-underline-offset: 4px; }
+  .cta .link-u:hover { color: var(--orange); }
+  .footer { padding-block: .7rem 1.2rem; }
+  .footer .page { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1.5rem; font-family: var(--mono); font-size: .75rem; letter-spacing: .03em; color: var(--muted); }
+  .footer a { text-decoration: none; }
+  .footer a:hover { color: var(--blue); }
+
+  [data-reveal] { transform: translateY(10px); transition: transform 600ms var(--ease); }
+  [data-reveal].is-in { transform: none; }
+
+  @media (min-width: 760px) {
+    .gh { display: inline-flex; }
+    .briefs__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+    .brief { border-bottom: 0; border-right: 1px solid var(--line); padding: .9rem; }
+    .brief:first-child { padding-left: 0; }
+    .brief:last-child { border-right: 0; padding-right: 0; }
+    .manifesto__grid { grid-template-columns: repeat(3, minmax(0, 1fr)) 1.2fr; align-items: start; }
+    .principles__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .principle { border-bottom: 0; border-right: 1px solid var(--line); padding: .8rem .9rem; }
+    .principle:first-child { padding-left: 0; }
+    .principle:last-child { border-right: 0; padding-right: 0; }
+  }
+  @media (max-width: 1059px) {
+    .hero__main, .hero__side { grid-column: 1 / -1; }
+    .hero__side { border-left: 0; border-top: 1px solid var(--ink); padding-left: 0; padding-top: .75rem; margin-top: 1.25rem; }
+    .studio__copy, .studio__side { grid-column: 1 / -1; }
+    .studio__side { margin-top: 1.25rem; }
+  }
+  @media (max-width: 759px) {
+    .hero h1 { font-size: 2.9rem; }
+    html[lang="en"] .hero h1 { font-size: 2.35rem; }
+    .hero__grid { gap: 0; }
+    .brief__media--phone img { height: 120px; }
+    .nav { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    [data-reveal] { transform: none; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__main > * { animation: rise 650ms var(--ease) both; }
+    .hero__main > :nth-child(2) { animation-delay: 60ms; }
+    .hero__main > :nth-child(3) { animation-delay: 120ms; }
+    .hero__side { animation: rise 750ms var(--ease) 100ms both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  }
+</style>
 </head>
 <body id="top">
 <a class="skip" href="#main"><span class="bi"><span lang="zh-CN">跳到正文</span><span lang="en">Skip to content</span></span></a>
+
 <header class="masthead">
-  <div class="wrap">
-    <a class="wordmark" href="#top">Skana<span class="wordmark__dot" aria-hidden="true">.</span></a>
-    <div class="masthead__right">
-      <a class="masthead__github" href="https://github.com/skana168">GitHub<span class="arrow" aria-hidden="true">↗</span></a>
-      <div class="lang" role="group" aria-label="语言 / Language" data-language-toggle>
-        <button type="button" data-set-lang="zh-CN" aria-pressed="true" lang="zh-CN">中文</button>
-        <button type="button" data-set-lang="en" aria-pressed="false" lang="en">EN</button>
+  <div class="page">
+    <div class="masthead__top">
+      <span>Skana / Software Index</span>
+      <span>2026.11 · No. 01</span>
+    </div>
+    <div class="masthead__nav">
+      <a class="brand" href="#top">SKANA<span>.</span></a>
+      <nav class="nav" aria-label="主导航 / Main navigation">
+        <a href="#briefs">01 / <span class="bi"><span lang="zh-CN">工具</span><span lang="en">Tools</span></span></a>
+        <a href="#principles">02 / <span class="bi"><span lang="zh-CN">原则</span><span lang="en">Principles</span></span></a>
+        <a href="#studio">03 / <span class="bi"><span lang="zh-CN">工作室</span><span lang="en">Studio</span></span></a>
+        <a href="https://github.com/skana168">GitHub ↗</a>
+      </nav>
+      <div class="head-right">
+        <a class="gh" href="https://github.com/skana168">GitHub <span aria-hidden="true">↗</span></a>
+        <div class="lang" role="group" aria-label="语言 / Language" data-language-toggle>
+          <button type="button" data-set-lang="zh-CN" aria-pressed="true" lang="zh-CN">中</button>
+          <button type="button" data-set-lang="en" aria-pressed="false" lang="en">EN</button>
+        </div>
       </div>
     </div>
   </div>
 </header>
+
 <main id="main">
   <section class="hero" aria-labelledby="hero-title">
-    <div class="wrap">
-      <p class="hero__eyebrow kicker"><span class="bi"><span lang="zh-CN">独立开发者</span><span lang="en">Independent developer</span></span></p>
-      <h1 id="hero-title"><span class="bi"><span lang="zh-CN">做安静的软件。</span><span lang="en">Quiet software.</span></span></h1>
-      <p class="hero__lede"><span class="bi"><span lang="zh-CN">我做桌面与移动端应用，尽量本地优先。数据留在你的机器上，账号能不要就不要。</span><span lang="en">I build desktop and mobile apps, usually local-first. Data stays on your machine, and accounts are optional when they can be.</span></span></p>
-      <ul class="index">
-        <li>
-          <a class="index__link" href="devsweep/">
-            <span class="index__num" aria-hidden="true">01</span>
-            <span class="index__name">DevSweep</span>
-            <span class="index__action"><span class="bi"><span lang="zh-CN">详情</span><span lang="en">Overview</span></span><span class="arrow" aria-hidden="true">→</span></span>
-          </a>
-        </li>
-        <li>
-          <a class="index__link" href="https://skana168.github.io/moment-bloom-site/">
-            <span class="index__num" aria-hidden="true">02</span>
-            <span class="index__name"><span class="bi"><span lang="zh-CN">时刻烟花</span><span lang="en">Moment Bloom</span></span></span>
-            <span class="index__action"><span class="bi"><span lang="zh-CN">访问</span><span lang="en">Visit</span></span><span class="arrow" aria-hidden="true">↗</span></span>
-          </a>
-        </li>
-      </ul>
+    <div class="page grid12 hero__grid">
+      <div class="hero__main">
+        <h1 id="hero-title"><span class="bi"><span lang="zh-CN">软件应该<br>待在你的<br><span class="accent">机器上。</span></span><span lang="en">Software should<br>stay on your<br><span class="accent">machine.</span></span></span></h1>
+        <p class="hero__deck"><span class="bi"><span lang="zh-CN">Skana 是一个人的软件工作室，做本地优先的工具。数据不出本机，账号能不要就不要。现在两件，后面还会有。</span><span lang="en">Skana is a one-person software studio making local-first tools. Data stays on your machine. No account when it can be avoided. Two tools now; more in the works.</span></span></p>
+        <div class="hero__links">
+          <a class="blue" href="#briefs"><span class="bi"><span lang="zh-CN">查看工具简报</span><span lang="en">Read the tool briefs</span></span> →</a>
+          <a class="blue" href="https://github.com/skana168">github.com/skana168 ↗</a>
+        </div>
+      </div>
+      <aside class="hero__side" aria-label="工具索引 / Tool index">
+        <p class="label">Index / 2026</p>
+        <a class="index-row" href="#briefs"><span class="index-row__num">01</span><span class="index-row__name">DevSweep</span><span class="index-row__arrow">↗</span><span class="index-row__meta">RUST · macOS / Windows · v0.4.0</span></a>
+        <a class="index-row" href="#briefs"><span class="index-row__num">02</span><span class="index-row__name">Moment Bloom</span><span class="index-row__arrow">↗</span><span class="index-row__meta">SWIFT · iOS / Android · v1.0.2</span></a>
+        <div class="index-row index-row--next"><span class="index-row__num">03</span><span class="index-row__name"><span class="bi"><span lang="zh-CN">下一件</span><span lang="en">Next</span></span></span><span class="index-row__arrow">+</span><span class="index-row__meta">IN THE WORKS · —</span></div>
+        <p class="hero__stats"><span>02 TOOLS</span><span>01 PERSON</span><span>00 ACCOUNTS</span></p>
+      </aside>
     </div>
   </section>
 
-  <section class="section work" id="work" aria-labelledby="work-title">
-    <div class="wrap">
-      <header class="section__head">
-        <p class="kicker"><span class="bi"><span lang="zh-CN">作品</span><span lang="en">Work</span></span></p>
-        <h2 class="section__title" id="work-title"><span class="bi"><span lang="zh-CN">两个产品，都还在打磨。</span><span lang="en">Two products, both still being shaped.</span></span></h2>
-      </header>
-      <ol class="work__list">
-        <li class="project" id="devsweep" aria-labelledby="devsweep-title">
-          <div class="project__body">
-            <p class="project__kicker kicker"><span class="bi"><span lang="zh-CN">开发工具</span><span lang="en">Developer tool</span></span><span class="project__year">2026</span></p>
-            <h3 class="project__title" id="devsweep-title">DevSweep</h3>
-            <p class="project__summary"><span class="bi"><span lang="zh-CN">把散落在项目里的构建产物和依赖缓存找出来，看清各自占了多少空间，再决定清掉哪些。覆盖 Flutter、Android、iOS、Java、Node、Python、Rust、.NET 和 Unity。</span><span lang="en">Finds the build artifacts and dependency caches scattered across your projects, shows how much space each one takes, and cleans only what you pick. Works across Flutter, Android, iOS, Java, Node, Python, Rust, .NET and Unity.</span></span></p>
-            <p class="project__spec"><span class="bi"><span lang="zh-CN">Rust · macOS / Windows · MIT</span><span lang="en">Rust · macOS / Windows · MIT</span></span></p>
-            <div class="project__links">
-              <a class="project__link" href="devsweep/"><span class="bi"><span lang="zh-CN">详情</span><span lang="en">Overview</span></span><span class="arrow" aria-hidden="true">→</span></a>
-              <a class="project__link project__link--secondary" href="https://github.com/skana168/DevSweep/releases/latest"><span class="bi"><span lang="zh-CN">下载</span><span lang="en">Download</span></span><span class="arrow" aria-hidden="true">↗</span></a>
-              <a class="project__link project__link--secondary" href="https://github.com/skana168/DevSweep"><span class="bi"><span lang="zh-CN">源码</span><span lang="en">Source</span></span><span class="arrow" aria-hidden="true">↗</span></a>
-            </div>
-          </div>
-          <figure class="project__media project__media--shot">
-            <img class="shot shot--zh" lang="zh-CN" src="assets/devsweep-main.png" width="2720" height="900" loading="lazy" decoding="async" alt="DevSweep 主界面：左侧列出扫描目录与项目类型，右侧是项目列表，显示各项目的类型、可清理体积和清理按钮。">
-            <img class="shot shot--en" lang="en" src="assets/devsweep-main.png" width="2720" height="900" loading="lazy" decoding="async" alt="The DevSweep main window: scan roots and project types on the left, a project table on the right with type, cleanable size and a clean button.">
-          </figure>
-        </li>
-        <li class="project" id="moment-bloom" aria-labelledby="moment-bloom-title">
-          <div class="project__body">
-            <p class="project__kicker kicker"><span class="bi"><span lang="zh-CN">移动应用</span><span lang="en">Mobile app</span></span><span class="project__year">2026</span></p>
-            <h3 class="project__title" id="moment-bloom-title"><span class="bi"><span lang="zh-CN">时刻烟花</span><span lang="en">Moment Bloom</span></span></h3>
-            <p class="project__summary"><span class="bi"><span lang="zh-CN">一个倒计时应用。最后一秒，会变成一场烟花。</span><span lang="en">A countdown app that turns the final second into fireworks.</span></span></p>
-            <p class="project__spec"><span class="bi"><span lang="zh-CN">倒计时 · 烟花 · Lifetime Pro</span><span lang="en">Countdown · Fireworks · Lifetime Pro</span></span></p>
-            <div class="project__links">
-              <a class="project__link" href="https://skana168.github.io/moment-bloom-site/"><span class="bi"><span lang="zh-CN">隐私与支持</span><span lang="en">Privacy and support</span></span><span class="arrow" aria-hidden="true">↗</span></a>
-            </div>
-          </div>
-          <figure class="project__media project__media--type typeplate" aria-hidden="true">
-            <span class="typeplate__ring"></span>
-            <span class="typeplate__kicker">MOMENT BLOOM</span>
-            <span class="typeplate__center">
-              <span class="typeplate__ember"></span>
-              <span class="typeplate__time">00:01</span>
-            </span>
-          </figure>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="section about" id="about" aria-labelledby="about-title">
-    <div class="wrap">
-      <h2 class="kicker about__title" id="about-title"><span class="bi"><span lang="zh-CN">关于</span><span lang="en">About</span></span></h2>
-      <div class="about__copy">
-        <p><span class="bi"><span lang="zh-CN">我做桌面和移动端的应用，偏好本地优先。能不联网就不联网，能不登录就不登录；界面尽量安静，功能尽量做完。DevSweep 和 Moment Bloom 都按这个标准做。</span><span lang="en">I build desktop and mobile apps, with a preference for local-first. Work offline when you can. Skip the account when you can. Keep the interface quiet and finish the feature. DevSweep and Moment Bloom are both held to that standard.</span></span></p>
-        <p><span class="bi"><span lang="zh-CN">DevSweep 把构建缓存清出你的机器，Moment Bloom 把倒计时变成一场烟花。一个在处理后台的杂物，一个在制造一刻的惊喜。</span><span lang="en">DevSweep clears build caches off your machine. Moment Bloom turns a countdown into fireworks. One handles the mess in the background, the other makes a moment.</span></span></p>
+  <section class="briefs" id="briefs" aria-labelledby="briefs-title">
+    <div class="page">
+      <div class="briefs__head"><span id="briefs-title">01 / <span class="bi"><span lang="zh-CN">工具简报</span><span lang="en">Tool briefs</span></span></span><span>02 NOW / 01 NEXT</span></div>
+      <div class="briefs__grid">
+        <article class="brief" data-reveal>
+          <div class="brief__top"><span class="brief__num">01</span><span class="brief__state"><span class="bi"><span lang="zh-CN">已发布</span><span lang="en">Shipped</span></span></span></div>
+          <h3>DevSweep<small><span class="bi"><span lang="zh-CN">项目缓存的清理工具</span><span lang="en">A cleaner for project caches</span></span></small></h3>
+          <p><span class="bi"><span lang="zh-CN">把散落在项目里的构建产物和依赖缓存找出来，看清体积，只清你勾选的。</span><span lang="en">Finds build artifacts and dependency caches, shows their sizes, and cleans only what you tick.</span></span></p>
+          <p class="brief__meta">Rust · macOS / Windows · MIT · v0.4.0</p>
+          <div class="brief__media"><img src="assets/devsweep-main.png" width="2720" height="900" loading="lazy" decoding="async" alt="DevSweep 主窗口 / The DevSweep main window"></div>
+          <div class="brief__links"><a class="blue" href="https://github.com/skana168/DevSweep/releases/latest"><span class="bi"><span lang="zh-CN">下载</span><span lang="en">Download</span></span> ↓</a><a class="blue" href="devsweep/"><span class="bi"><span lang="zh-CN">详情</span><span lang="en">Overview</span></span> →</a></div>
+        </article>
+        <article class="brief" data-reveal>
+          <div class="brief__top"><span class="brief__num">02</span><span class="brief__state"><span class="bi"><span lang="zh-CN">已发布</span><span lang="en">Shipped</span></span></span></div>
+          <h3>Moment Bloom<small><span class="bi"><span lang="zh-CN">倒计时与烟花</span><span lang="en">Countdown and fireworks</span></span></small></h3>
+          <p><span class="bi"><span lang="zh-CN">三种倒计时方式。最后一秒，变成一场烟花。</span><span lang="en">Three countdown modes. The final second becomes fireworks.</span></span></p>
+          <p class="brief__meta">iOS / Android · v1.0.2 · Lifetime Pro</p>
+          <div class="brief__media brief__media--phone"><img src="assets/mb-screen-5.jpg" loading="lazy" decoding="async" alt="Moment Bloom 倒计时 / Moment Bloom countdown"></div>
+          <div class="brief__links"><a class="blue" href="https://apps.apple.com/us/app/moment-bloom/id6815054376">App Store ↗</a><a class="blue" href="https://skana168.github.io/moment-bloom-site/"><span class="bi"><span lang="zh-CN">隐私与支持</span><span lang="en">Privacy and support</span></span> ↗</a></div>
+        </article>
+        <article class="brief brief--next" data-reveal>
+          <div class="brief__top"><span class="brief__num">03</span><span class="brief__state">IN THE WORKS</span></div>
+          <h3><span class="bi"><span lang="zh-CN">下一件</span><span lang="en">Next</span></span><small><span class="bi"><span lang="zh-CN">这个位置留给它</span><span lang="en">This slot is for it</span></span></small></h3>
+          <p><span class="bi"><span lang="zh-CN">还在做。做好再放上来。不编造名字、日期或截图。</span><span lang="en">In the works. It goes up when it's done. No invented name, date or screenshot.</span></span></p>
+          <p class="brief__meta">—</p>
+          <div class="brief__empty"><b>03 / IN THE WORKS</b><span><span class="bi"><span lang="zh-CN">下一期</span><span lang="en">Next issue</span></span></span></div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="contact" id="contact" aria-labelledby="contact-title">
-    <div class="wrap">
-      <p class="kicker"><span class="bi"><span lang="zh-CN">联系</span><span lang="en">Contact</span></span></p>
-      <h2 class="contact__title" id="contact-title"><span class="bi"><span lang="zh-CN">在 GitHub 找我。</span><span lang="en">Find me on GitHub.</span></span></h2>
-      <p class="contact__body"><span class="bi"><span lang="zh-CN">有想法、有问题，或者只是想打个招呼，都可以。</span><span lang="en">Ideas, questions, or just a hello. All welcome.</span></span></p>
-      <a class="contact__handle" href="https://github.com/skana168">github.com/skana168</a>
+  <section class="manifesto" aria-label="工作室宣言 / Studio manifesto">
+    <div class="page manifesto__grid">
+      <div class="manifesto__item"><b>LOCAL-FIRST</b><span><span class="bi"><span lang="zh-CN">数据留在你的机器上。</span><span lang="en">Data stays on your machine.</span></span></span></div>
+      <div class="manifesto__item"><b>NO ACCOUNTS</b><span><span class="bi"><span lang="zh-CN">能不登录就不登录。</span><span lang="en">No account when it can be avoided.</span></span></span></div>
+      <div class="manifesto__item"><b>ONE PERSON</b><span><span class="bi"><span lang="zh-CN">设计、代码、打包、文档。</span><span lang="en">Design, code, packaging, documentation.</span></span></span></div>
+      <p class="manifesto__note"><span class="bi"><span lang="zh-CN">三条底线，不随产品变。下一件也一样。</span><span lang="en">Three baselines. They do not change with the product. The next one follows them too.</span></span></p>
+    </div>
+  </section>
+
+  <section class="principles" id="principles" aria-labelledby="principles-title">
+    <div class="page">
+      <div class="principles__head"><span id="principles-title">02 / <span class="bi"><span lang="zh-CN">原则</span><span lang="en">Principles</span></span></span><span>FIXED / NOT CONFIGURABLE</span></div>
+      <div class="principles__grid">
+        <div class="principle"><span class="principle__num">01</span><h3><span class="bi"><span lang="zh-CN">本地优先</span><span lang="en">Local-first</span></span></h3><p><span class="bi"><span lang="zh-CN">数据留在你的机器上。能不联网就不联网。</span><span lang="en">Data stays on your machine. Offline when it can.</span></span></p></div>
+        <div class="principle"><span class="principle__num">02</span><h3><span class="bi"><span lang="zh-CN">不要账号</span><span lang="en">No accounts</span></span></h3><p><span class="bi"><span lang="zh-CN">能不登录就不登录；没有账号系统。</span><span lang="en">No account when it can be avoided. There is no account system.</span></span></p></div>
+        <div class="principle"><span class="principle__num">03</span><h3><span class="bi"><span lang="zh-CN">一个人</span><span lang="en">One person</span></span></h3><p><span class="bi"><span lang="zh-CN">设计、代码、打包、文档，都是一个人。</span><span lang="en">Design, code, packaging and documentation are one person.</span></span></p></div>
+        <div class="principle"><span class="principle__num">04</span><h3><span class="bi"><span lang="zh-CN">做完再发</span><span lang="en">Finished before shipped</span></span></h3><p><span class="bi"><span lang="zh-CN">不拿没做完的东西占位。</span><span lang="en">Nothing unfinished is used as filler.</span></span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="studio" id="studio" aria-labelledby="studio-title">
+    <div class="page grid12 studio__grid">
+      <div class="studio__copy" data-reveal>
+        <p class="mono">03 / <span class="bi"><span lang="zh-CN">工作室</span><span lang="en">Studio</span></span></p>
+        <h2 id="studio-title"><span class="bi"><span lang="zh-CN">一个人的软件工作室。</span><span lang="en">A one-person software studio.</span></span></h2>
+        <p><span class="bi"><span lang="zh-CN">Skana 做桌面和移动端的工具，偏好本地优先。界面安静，功能做完。DevSweep、Moment Bloom 和下一件，都按这个标准做。</span><span lang="en">Skana makes desktop and mobile tools, with a preference for local-first. A quiet interface, a finished feature. DevSweep, Moment Bloom and the next one are all held to that standard.</span></span></p>
+        <p style="margin-top:.75rem"><a class="blue" href="https://github.com/skana168">在 GitHub 看全部 / See everything on GitHub ↗</a></p>
+      </div>
+      <div class="studio__side" data-reveal>
+        <div class="colophon">
+          <div><span><span class="bi"><span lang="zh-CN">本期</span><span lang="en">Issue</span></span></span><span>2026 · No. 01</span></div>
+          <div><span><span class="bi"><span lang="zh-CN">工具</span><span lang="en">Tools</span></span></span><span>DevSweep · Moment Bloom · Next</span></div>
+          <div><span><span class="bi"><span lang="zh-CN">设计 / 代码</span><span lang="en">Design / code</span></span></span><span>Skana</span></div>
+          <div><span><span class="bi"><span lang="zh-CN">字体</span><span lang="en">Type</span></span></span><span><span class="bi"><span lang="zh-CN">系统字体</span><span lang="en">System fonts</span></span></span></div>
+          <div><span><span class="bi"><span lang="zh-CN">追踪</span><span lang="en">Trackers</span></span></span><span><span class="bi"><span lang="zh-CN">无</span><span lang="en">None</span></span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact" aria-labelledby="cta-title">
+    <div class="page">
+      <p class="mono">04 / <span class="bi"><span lang="zh-CN">联系</span><span lang="en">Contact</span></span></p>
+      <h2 id="cta-title"><span class="bi"><span lang="zh-CN">在 <a href="https://github.com/skana168">GitHub</a> 看全部。</span><span lang="en">See everything on <a href="https://github.com/skana168">GitHub</a>.</span></span></h2>
+      <div class="cta__actions">
+        <a class="btn" href="https://github.com/skana168"><span class="bi"><span lang="zh-CN">打开 GitHub</span><span lang="en">Open GitHub</span></span> ↗</a>
+        <a class="link-u" href="https://github.com/skana168/DevSweep/releases/latest"><span class="bi"><span lang="zh-CN">下载 DevSweep</span><span lang="en">Download DevSweep</span></span> ↓</a>
+      </div>
     </div>
   </section>
 </main>
+
 <footer class="footer">
-  <div class="wrap">
-    <span class="footer__mark">Skana<span class="wordmark__dot" aria-hidden="true">.</span></span>
-    <span class="footer__copy"><span class="bi"><span lang="zh-CN">© 2026 Skana</span><span lang="en">© 2026 Skana</span></span></span>
-    <span class="footer__colophon"><span class="bi"><span lang="zh-CN">手写 HTML 与 CSS，无追踪。</span><span lang="en">Hand-written HTML and CSS. No trackers.</span></span></span>
+  <div class="page">
+    <span>Skana / Software Index / 2026</span>
+    <span>© 2026 Skana</span>
+    <span><span class="bi"><span lang="zh-CN">手写 HTML 与 CSS · 无追踪</span><span lang="en">Hand-written HTML and CSS · No trackers</span></span></span>
+    <a href="https://github.com/skana168">github.com/skana168 ↗</a>
   </div>
 </footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var key = "skana:lang";
+  var zhTitle = root.dataset.titleZh || document.title;
+  var enTitle = root.dataset.titleEn || zhTitle;
+  function isLang(value) { return value === "zh-CN" || value === "en"; }
+  try { var stored = localStorage.getItem(key); if (isLang(stored)) root.lang = stored; } catch (error) {}
+  function applyLang(lang) {
+    if (!isLang(lang)) return;
+    root.lang = lang;
+    document.title = lang === "en" ? enTitle : zhTitle;
+    var buttons = root.querySelectorAll("[data-set-lang]");
+    for (var i = 0; i < buttons.length; i++) buttons[i].setAttribute("aria-pressed", String(buttons[i].dataset.setLang === lang));
+  }
+  function init() {
+    applyLang(root.lang);
+    var group = root.querySelector("[data-language-toggle]");
+    if (group) {
+      group.addEventListener("click", function (event) {
+        var button = event.target.closest("[data-set-lang]");
+        if (!button) return;
+        applyLang(button.dataset.setLang);
+        try { localStorage.setItem(key, root.lang); } catch (error) {}
+      });
+    }
+    var reveals = document.querySelectorAll("[data-reveal]");
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) { entries[i].target.classList.add("is-in"); observer.unobserve(entries[i].target); }
+        }
+      }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
+      for (var j = 0; j < reveals.length; j++) observer.observe(reveals[j]);
+    } else {
+      for (var k = 0; k < reveals.length; k++) reveals[k].classList.add("is-in");
+    }
+  }
+  document.addEventListener("DOMContentLoaded", init);
+})();
+</script>
 </body>
 </html>
