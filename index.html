@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN" data-title-zh="Skana · 独立开发者" data-title-en="Skana · Independent developer">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skana · 独立开发者</title>
+<meta name="description" content="Skana 的作品集：DevSweep 与 Moment Bloom，两个本地优先的应用。 / Skana's portfolio: DevSweep and Moment Bloom, two local-first apps.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<script src="main.js"></script>
+</head>
+<body id="top">
+<a class="skip" href="#main"><span class="bi"><span lang="zh-CN">跳到正文</span><span lang="en">Skip to content</span></span></a>
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="#top">Skana<span class="wordmark__dot" aria-hidden="true">.</span></a>
+    <div class="masthead__right">
+      <a class="masthead__github" href="https://github.com/skana168">GitHub<span class="arrow" aria-hidden="true">↗</span></a>
+      <div class="lang" role="group" aria-label="语言 / Language" data-language-toggle>
+        <button type="button" data-set-lang="zh-CN" aria-pressed="true" lang="zh-CN">中文</button>
+        <button type="button" data-set-lang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <p class="hero__eyebrow kicker"><span class="bi"><span lang="zh-CN">独立开发者</span><span lang="en">Independent developer</span></span></p>
+      <h1 id="hero-title"><span class="bi"><span lang="zh-CN">做安静的软件。</span><span lang="en">Quiet software.</span></span></h1>
+      <p class="hero__lede"><span class="bi"><span lang="zh-CN">我做桌面与移动端应用，尽量本地优先。数据留在你的机器上，账号能不要就不要。</span><span lang="en">I build desktop and mobile apps, usually local-first. Data stays on your machine, and accounts are optional when they can be.</span></span></p>
+      <ul class="index">
+        <li>
+          <a class="index__link" href="https://github.com/skana168/DevSweep/releases/latest">
+            <span class="index__num" aria-hidden="true">01</span>
+            <span class="index__name">DevSweep</span>
+            <span class="index__action"><span class="bi"><span lang="zh-CN">下载</span><span lang="en">Download</span></span><span class="arrow" aria-hidden="true">↗</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="index__link" href="https://skana168.github.io/moment-bloom-site/">
+            <span class="index__num" aria-hidden="true">02</span>
+            <span class="index__name"><span class="bi"><span lang="zh-CN">时刻烟花</span><span lang="en">Moment Bloom</span></span></span>
+            <span class="index__action"><span class="bi"><span lang="zh-CN">访问</span><span lang="en">Visit</span></span><span class="arrow" aria-hidden="true">↗</span></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section work" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="kicker"><span class="bi"><span lang="zh-CN">作品</span><span lang="en">Work</span></span></p>
+        <h2 class="section__title" id="work-title"><span class="bi"><span lang="zh-CN">两个产品，都还在打磨。</span><span lang="en">Two products, both still being shaped.</span></span></h2>
+      </header>
+      <ol class="work__list">
+        <li class="project" id="devsweep" aria-labelledby="devsweep-title">
+          <div class="project__body">
+            <p class="project__kicker kicker"><span class="bi"><span lang="zh-CN">开发工具</span><span lang="en">Developer tool</span></span><span class="project__year">2026</span></p>
+            <h3 class="project__title" id="devsweep-title">DevSweep</h3>
+            <p class="project__summary"><span class="bi"><span lang="zh-CN">把散落在项目里的构建产物和依赖缓存找出来，看清各自占了多少空间，再决定清掉哪些。覆盖 Flutter、Android、iOS、Java、Node、Python、Rust、.NET 和 Unity。</span><span lang="en">Finds the build artifacts and dependency caches scattered across your projects, shows how much space each one takes, and cleans only what you pick. Works across Flutter, Android, iOS, Java, Node, Python, Rust, .NET and Unity.</span></span></p>
+            <p class="project__spec"><span class="bi"><span lang="zh-CN">Rust · macOS / Windows · MIT</span><span lang="en">Rust · macOS / Windows · MIT</span></span></p>
+            <div class="project__links">
+              <a class="project__link" href="https://github.com/skana168/DevSweep/releases/latest"><span class="bi"><span lang="zh-CN">下载</span><span lang="en">Download</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+              <a class="project__link project__link--secondary" href="https://github.com/skana168/DevSweep"><span class="bi"><span lang="zh-CN">源码</span><span lang="en">Source</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <figure class="project__media project__media--shot">
+            <img class="shot shot--zh" lang="zh-CN" src="assets/devsweep-main.png" width="2720" height="900" loading="lazy" decoding="async" alt="DevSweep 主界面：左侧列出扫描目录与项目类型，右侧是项目列表，显示各项目的类型、可清理体积和清理按钮。">
+            <img class="shot shot--en" lang="en" src="assets/devsweep-main.png" width="2720" height="900" loading="lazy" decoding="async" alt="The DevSweep main window: scan roots and project types on the left, a project table on the right with type, cleanable size and a clean button.">
+          </figure>
+        </li>
+        <li class="project" id="moment-bloom" aria-labelledby="moment-bloom-title">
+          <div class="project__body">
+            <p class="project__kicker kicker"><span class="bi"><span lang="zh-CN">移动应用</span><span lang="en">Mobile app</span></span><span class="project__year">2026</span></p>
+            <h3 class="project__title" id="moment-bloom-title"><span class="bi"><span lang="zh-CN">时刻烟花</span><span lang="en">Moment Bloom</span></span></h3>
+            <p class="project__summary"><span class="bi"><span lang="zh-CN">一个倒计时应用。最后一秒，会变成一场烟花。</span><span lang="en">A countdown app that turns the final second into fireworks.</span></span></p>
+            <p class="project__spec"><span class="bi"><span lang="zh-CN">倒计时 · 烟花 · Lifetime Pro</span><span lang="en">Countdown · Fireworks · Lifetime Pro</span></span></p>
+            <div class="project__links">
+              <a class="project__link" href="https://skana168.github.io/moment-bloom-site/"><span class="bi"><span lang="zh-CN">隐私与支持</span><span lang="en">Privacy and support</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <figure class="project__media project__media--type typeplate" aria-hidden="true">
+            <span class="typeplate__ring"></span>
+            <span class="typeplate__kicker">MOMENT BLOOM</span>
+            <span class="typeplate__center">
+              <span class="typeplate__ember"></span>
+              <span class="typeplate__time">00:01</span>
+            </span>
+          </figure>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section about" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <h2 class="kicker about__title" id="about-title"><span class="bi"><span lang="zh-CN">关于</span><span lang="en">About</span></span></h2>
+      <div class="about__copy">
+        <p><span class="bi"><span lang="zh-CN">我做桌面和移动端的应用，偏好本地优先。能不联网就不联网，能不登录就不登录；界面尽量安静，功能尽量做完。DevSweep 和 Moment Bloom 都按这个标准做。</span><span lang="en">I build desktop and mobile apps, with a preference for local-first. Work offline when you can. Skip the account when you can. Keep the interface quiet and finish the feature. DevSweep and Moment Bloom are both held to that standard.</span></span></p>
+        <p><span class="bi"><span lang="zh-CN">DevSweep 把构建缓存清出你的机器，Moment Bloom 把倒计时变成一场烟花。一个在处理后台的杂物，一个在制造一刻的惊喜。</span><span lang="en">DevSweep clears build caches off your machine. Moment Bloom turns a countdown into fireworks. One handles the mess in the background, the other makes a moment.</span></span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <p class="kicker"><span class="bi"><span lang="zh-CN">联系</span><span lang="en">Contact</span></span></p>
+      <h2 class="contact__title" id="contact-title"><span class="bi"><span lang="zh-CN">在 GitHub 找我。</span><span lang="en">Find me on GitHub.</span></span></h2>
+      <p class="contact__body"><span class="bi"><span lang="zh-CN">有想法、有问题，或者只是想打个招呼，都可以。</span><span lang="en">Ideas, questions, or just a hello. All welcome.</span></span></p>
+      <a class="contact__handle" href="https://github.com/skana168">github.com/skana168</a>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <span class="footer__mark">Skana<span class="wordmark__dot" aria-hidden="true">.</span></span>
+    <span class="footer__copy"><span class="bi"><span lang="zh-CN">© 2026 Skana</span><span lang="en">© 2026 Skana</span></span></span>
+    <span class="footer__colophon"><span class="bi"><span lang="zh-CN">手写 HTML 与 CSS，无追踪。</span><span lang="en">Hand-written HTML and CSS. No trackers.</span></span></span>
+  </div>
+</footer>
+</body>
+</html>
