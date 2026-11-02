@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-CN" data-title-zh="DevSweep · 清理项目缓存" data-title-en="DevSweep · Clear project caches">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevSweep · 清理项目缓存</title>
+<meta name="description" content="DevSweep 扫描项目中的构建产物和依赖缓存，显示各自体积，只清理你勾选的内容。macOS 与 Windows。 / DevSweep scans projects for build artifacts and dependency caches, shows the size of each, and cleans only what you tick. macOS and Windows.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DevSweep · 清理项目缓存">
+<meta property="og:description" content="找出项目里的构建产物和依赖缓存，看清体积后勾选清理。macOS 与 Windows，本地运行，不需要账号。">
+<meta property="og:url" content="https://skana168.github.io/devsweep/">
+<meta property="og:image" content="https://skana168.github.io/assets/devsweep-main.png">
+<meta property="og:image:width" content="2720">
+<meta property="og:image:height" content="900">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/devsweep-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="landing.css">
+<script src="../main.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"DevSweep","description":"Finds build artifacts and dependency caches in local projects, shows their sizes, and deletes only what the user picks.","applicationCategory":"DeveloperApplication","operatingSystem":"macOS, Windows","url":"https://skana168.github.io/devsweep/","downloadUrl":"https://github.com/skana168/DevSweep/releases/latest","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body class="ds-page">
+<a class="skip" href="#main"><span class="bi"><span lang="zh-CN">跳到正文</span><span lang="en">Skip to content</span></span></a>
+<header class="masthead">
+  <div class="wrap">
+    <a class="ds-back" href="../" aria-label="Skana 作品集 / Skana portfolio">← Skana</a>
+    <div class="masthead__right">
+      <a class="masthead__github" href="https://github.com/skana168/DevSweep">GitHub<span class="arrow" aria-hidden="true">↗</span></a>
+      <div class="lang" role="group" aria-label="语言 / Language" data-language-toggle>
+        <button type="button" data-set-lang="zh-CN" aria-pressed="true" lang="zh-CN">中文</button>
+        <button type="button" data-set-lang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="main">
+  <section class="hero ds-hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="ds-hero__grid">
+        <div class="ds-hero__copy">
+          <p class="hero__eyebrow kicker"><span class="bi"><span lang="zh-CN">开发工具 · macOS / Windows</span><span lang="en">Developer tool · macOS / Windows</span></span></p>
+          <h1 id="hero-title"><span class="bi"><span lang="zh-CN">项目里的<span class="ds-nowrap">几十 GB</span>，<span class="ds-nowrap">该清一清了</span>。</span><span lang="en">Tens of gigabytes are hiding in your build folders.</span></span></h1>
+          <p class="hero__lede"><span class="bi"><span lang="zh-CN">DevSweep 扫描你的项目，找出构建产物和依赖缓存，标出各自占多少空间。勾选不需要的部分，确认后清理。删除默认进废纸篓。</span><span lang="en">DevSweep scans your projects for build artifacts and dependency caches, shows how much space each one takes, and deletes only what you tick. Deletions go to the Trash by default.</span></span></p>
+          <div class="ds-ctas">
+            <a class="ds-cta ds-cta--primary" href="https://github.com/skana168/DevSweep/releases/latest"><span class="bi"><span lang="zh-CN">下载 DevSweep</span><span lang="en">Download DevSweep</span></span><span class="arrow" aria-hidden="true">↓</span></a>
+            <a class="ds-cta ds-cta--secondary" href="https://github.com/skana168/DevSweep"><span class="bi"><span lang="zh-CN">查看源码</span><span lang="en">Source</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+          <p class="ds-hero__meta">v0.4.0 · <span class="bi"><span lang="zh-CN">早期 alpha</span><span lang="en">Early alpha</span></span></p>
+        </div>
+        <aside class="ds-plate" aria-labelledby="ds-plate-name">
+          <div class="ds-plate__head">
+            <img class="ds-plate__icon" src="../assets/devsweep-icon.svg" width="512" height="512" alt="" decoding="async">
+            <p class="ds-plate__name" id="ds-plate-name">DevSweep</p>
+          </div>
+          <dl class="ds-plate__specs">
+            <div class="ds-spec"><dt><span class="bi"><span lang="zh-CN">平台</span><span lang="en">Platform</span></span></dt><dd>macOS / Windows</dd></div>
+            <div class="ds-spec"><dt><span class="bi"><span lang="zh-CN">语言</span><span lang="en">Language</span></span></dt><dd>Rust</dd></div>
+            <div class="ds-spec"><dt><span class="bi"><span lang="zh-CN">许可</span><span lang="en">License</span></span></dt><dd>MIT</dd></div>
+          </dl>
+          <p class="ds-plate__note"><span class="bi"><span lang="zh-CN">不需要账号，数据不出本机</span><span lang="en">No account. Nothing leaves your machine.</span></span></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="ds-shot-section">
+    <div class="wrap">
+      <figure class="ds-shot">
+        <a class="ds-shot__link" href="../assets/devsweep-main.png" aria-label="查看完整尺寸截图 / Open the full-size screenshot">
+          <img class="shot shot--zh" lang="zh-CN" src="../assets/devsweep-main.png" width="2720" height="900" decoding="async" alt="DevSweep 主窗口，左侧是扫描目录与项目类型，右侧是项目列表，显示各项目的类型、可清理体积和清理按钮。">
+          <img class="shot shot--en" lang="en" src="../assets/devsweep-main.png" width="2720" height="900" decoding="async" alt="The DevSweep main window, with scan roots and project types on the left and a project table on the right showing type, cleanable size and a clean button.">
+        </a>
+        <figcaption class="ds-shot__caption"><span class="bi"><span lang="zh-CN">主窗口，浅色主题</span><span lang="en">Main window, light theme</span></span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <section class="section ds-section" id="coverage" aria-labelledby="coverage-title">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="kicker"><span class="bi"><span lang="zh-CN">覆盖</span><span lang="en">Coverage</span></span></p>
+        <h2 class="section__title" id="coverage-title"><span class="bi"><span lang="zh-CN">它清理什么</span><span lang="en">What it cleans</span></span></h2>
+      </header>
+      <p class="ds-lede"><span class="bi"><span lang="zh-CN">DevSweep 列出项目里每一条可清理的路径和它的体积。危险项默认不勾选。</span><span lang="en">DevSweep lists every cleanable path in a project with its size. Risky entries start unchecked.</span></span></p>
+      <ol class="ds-stacks">
+        <li class="ds-stacks__item"><span class="ds-stacks__index" aria-hidden="true">01</span><span class="ds-stacks__name">Flutter</span></li>
+        <li class="ds-stacks__item"><span class="ds-stacks__index" aria-hidden="true">02</span><span class="ds-stacks__name">Android</span></li>
+        <li class="ds-stacks__item"><span class="ds-stacks__index" aria-hidden="true">03</span><span class="ds-stacks__name">iOS</span></li>
+        <li class="ds-stacks__item"><span class="ds-stacks__index" aria-hidden="true">04</span><span class="ds-stacks__name">Java</span></li>
+        <li class="ds-stacks__item"><span class="ds-stacks__index" aria-hidden="true">05</span><span class="ds-stacks__name">Node</span></li>
+        <li class="ds-stacks__item"><span class="ds-stacks__index" aria-hidden="true">06</span><span class="ds-stacks__name">Python</span></li>
+        <li class="ds-stacks__item"><span class="ds-stacks__index" aria-hidden="true">07</span><span class="ds-stacks__name">Rust</span></li>
+        <li class="ds-stacks__item"><span class="ds-stacks__index" aria-hidden="true">08</span><span class="ds-stacks__name">.NET</span></li>
+        <li class="ds-stacks__item"><span class="ds-stacks__index" aria-hidden="true">09</span><span class="ds-stacks__name">Unity</span></li>
+      </ol>
+      <div class="ds-outside">
+        <h3 class="ds-outside__title"><span class="bi"><span lang="zh-CN">项目之外</span><span lang="en">Outside your projects</span></span></h3>
+        <div class="ds-caches">
+          <div class="ds-caches__group">
+            <h4><span class="bi"><span lang="zh-CN">依赖缓存</span><span lang="en">Dependency caches</span></span></h4>
+            <ul class="ds-caches__list">
+              <li>Gradle caches</li>
+              <li>Gradle distributions</li>
+              <li>Maven local repository</li>
+              <li>npm</li>
+              <li>pnpm</li>
+              <li>bun</li>
+              <li>Yarn</li>
+              <li>pub</li>
+              <li>CocoaPods</li>
+              <li>Go module cache</li>
+            </ul>
+          </div>
+          <div class="ds-caches__group">
+            <h4><span class="bi"><span lang="zh-CN">工具链缓存</span><span lang="en">Toolchain caches</span></span></h4>
+            <ul class="ds-caches__list">
+              <li>Playwright</li>
+              <li>Xcode DerivedData</li>
+              <li>Cargo registry</li>
+              <li>pip</li>
+              <li>Go build cache</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ds-outside__notes">
+          <p><span class="bi"><span lang="zh-CN">清掉一个缓存，会为所有项目腾出空间，下一次构建会重新下载或重建需要的内容。</span><span lang="en">Clearing a cache frees space for every project, and the next build downloads or rebuilds what it needs.</span></span></p>
+          <p><span class="bi"><span lang="zh-CN">全局缓存列表是固定的，rules.toml 不能扩展，也不能关闭。</span><span lang="en">The global cache list is fixed. rules.toml cannot extend or disable it.</span></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ds-section" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="kicker"><span class="bi"><span lang="zh-CN">用法</span><span lang="en">How it works</span></span></p>
+        <h2 class="section__title" id="how-title"><span class="bi"><span lang="zh-CN">从扫描到清理</span><span lang="en">From scan to clean</span></span></h2>
+      </header>
+      <ol class="ds-steps">
+        <li class="ds-step">
+          <span class="ds-step__num" aria-hidden="true">01</span>
+          <div class="ds-step__body">
+            <p class="ds-step__title"><span class="bi"><span lang="zh-CN">添加目录</span><span lang="en">Add a directory</span></span></p>
+            <p class="ds-step__text"><span class="bi"><span lang="zh-CN">把存放项目的父目录加进来，例如 ~/Projects 或 D:\code。</span><span lang="en">Point it at the folder that holds your projects, such as ~/Projects or D:\code.</span></span></p>
+          </div>
+        </li>
+        <li class="ds-step">
+          <span class="ds-step__num" aria-hidden="true">02</span>
+          <div class="ds-step__body">
+            <p class="ds-step__title"><span class="bi"><span lang="zh-CN">查看体积，勾选要清的内容</span><span lang="en">Check the sizes and tick what goes</span></span></p>
+            <p class="ds-step__text"><span class="bi"><span lang="zh-CN">危险项默认不勾，确认框写明条目数、总大小和超过 5 GB 的单项。</span><span lang="en">Risky entries start unchecked, and the confirmation names the count, the total, and any single item over 5 GB.</span></span></p>
+          </div>
+        </li>
+        <li class="ds-step">
+          <span class="ds-step__num" aria-hidden="true">03</span>
+          <div class="ds-step__body">
+            <p class="ds-step__title"><span class="bi"><span lang="zh-CN">确认清理</span><span lang="en">Confirm</span></span></p>
+            <p class="ds-step__text"><span class="bi"><span lang="zh-CN">默认进废纸篓，误删可恢复；设置里可以改成直接删除。</span><span lang="en">Deletions go to the Trash by default, so a mistake is recoverable; Settings can switch to permanent deletion.</span></span></p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section ds-section" id="install" aria-labelledby="install-title">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="kicker"><span class="bi"><span lang="zh-CN">下载</span><span lang="en">Download</span></span></p>
+        <h2 class="section__title" id="install-title"><span class="bi"><span lang="zh-CN">安装</span><span lang="en">Install</span></span></h2>
+      </header>
+      <div class="ds-install">
+        <div class="ds-install__card">
+          <h3>macOS</h3>
+          <p class="ds-install__file">DevSweep_<span class="bi"><span lang="zh-CN">&lt;版本&gt;</span><span lang="en">&lt;version&gt;</span></span>_macos.dmg</p>
+          <p><span class="bi"><span lang="zh-CN">打开它，把 DevSweep 拖进「应用程序」。</span><span lang="en">Open it and drag DevSweep into Applications.</span></span></p>
+        </div>
+        <div class="ds-install__card">
+          <h3>Windows</h3>
+          <p class="ds-install__file">devsweep_<span class="bi"><span lang="zh-CN">&lt;版本&gt;</span><span lang="en">&lt;version&gt;</span></span>_windows.zip</p>
+          <p><span class="bi"><span lang="zh-CN">便携版，解压后运行 devsweep.exe。</span><span lang="en">Portable. Unzip and run devsweep.exe.</span></span></p>
+        </div>
+      </div>
+      <div class="ds-install__links">
+        <a class="ds-cta ds-cta--primary" href="https://github.com/skana168/DevSweep/releases/latest"><span class="bi"><span lang="zh-CN">下载最新版</span><span lang="en">Download latest</span></span><span class="arrow" aria-hidden="true">↓</span></a>
+        <a class="ds-install__link" href="https://github.com/skana168/DevSweep/releases"><span class="bi"><span lang="zh-CN">全部版本</span><span lang="en">All releases</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <details class="ds-unsigned">
+        <summary class="ds-unsigned__summary"><span class="bi"><span lang="zh-CN">构建未签名，系统会拦一次</span><span lang="en">The builds are unsigned, so the OS stops them once</span></span><span class="ds-unsigned__mark" aria-hidden="true">+</span></summary>
+        <div class="ds-unsigned__body">
+          <p><span class="bi"><span lang="zh-CN">这是正常的，不是文件损坏。</span><span lang="en">This is expected, not corruption.</span></span></p>
+          <p class="ds-unsigned__label">macOS</p>
+          <p><span class="bi"><span lang="zh-CN">打开「系统设置」，进入「隐私与安全性」，点「仍要打开」。也可以在访达里右键点 DevSweep，选「打开」。或者在终端执行：</span><span lang="en">Open System Settings, go to Privacy &amp; Security, and click Open Anyway. You can also right-click DevSweep in Finder and choose Open. Or run this in Terminal:</span></span></p>
+          <pre><code>xattr -dr com.apple.quarantine /Applications/DevSweep.app</code></pre>
+          <p class="ds-unsigned__label">Windows</p>
+          <p><span class="bi"><span lang="zh-CN">SmartScreen 出现时，点「更多信息」，再点「仍要运行」。</span><span lang="en">When SmartScreen appears, click More info, then Run anyway.</span></span></p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section ds-section" id="questions" aria-labelledby="questions-title">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="kicker"><span class="bi"><span lang="zh-CN">细节</span><span lang="en">Details</span></span></p>
+        <h2 class="section__title" id="questions-title"><span class="bi"><span lang="zh-CN">常见问题</span><span lang="en">Questions</span></span></h2>
+      </header>
+      <div class="ds-faq">
+        <details class="ds-faq__item">
+          <summary class="ds-faq__summary"><span class="bi"><span lang="zh-CN">要重新下载依赖吗？</span><span lang="en">Will I have to re-download dependencies?</span></span><span class="ds-faq__mark" aria-hidden="true">+</span></summary>
+          <div class="ds-faq__body">
+            <p><span class="bi"><span lang="zh-CN">会。清掉一个全局缓存，会为所有项目腾出空间，下一次构建会重新下载或重建需要的内容。构建缓存会让下一次构建变慢。</span><span lang="en">Yes. Clearing a global cache frees space for every project, and the next build downloads or rebuilds what it needs. Build caches make the next build slower.</span></span></p>
+          </div>
+        </details>
+        <details class="ds-faq__item">
+          <summary class="ds-faq__summary"><span class="bi"><span lang="zh-CN">会有数据离开我的机器吗？</span><span lang="en">Does anything leave my machine?</span></span><span class="ds-faq__mark" aria-hidden="true">+</span></summary>
+          <div class="ds-faq__body">
+            <p><span class="bi"><span lang="zh-CN">不会。没有云端，没有账号，数据不出本机。</span><span lang="en">No. No cloud, no account, nothing leaves the machine.</span></span></p>
+          </div>
+        </details>
+        <details class="ds-faq__item">
+          <summary class="ds-faq__summary"><span class="bi"><span lang="zh-CN">可以改清理规则吗？</span><span lang="en">Can I change the cleanup rules?</span></span><span class="ds-faq__mark" aria-hidden="true">+</span></summary>
+          <div class="ds-faq__body">
+            <p><span class="bi"><span lang="zh-CN">可以。rules.toml 能停用某条内置项目规则、改哪些条目默认勾选，或者添加一个目录。全局缓存列表是固定的。</span><span lang="en">Yes. rules.toml can disable a built-in project rule, change which entries start checked, or add a directory. The global cache list is fixed.</span></span></p>
+            <a class="ds-faq__link" href="https://github.com/skana168/DevSweep/blob/main/docs/rules.md"><span class="bi"><span lang="zh-CN">阅读规则文档</span><span lang="en">Read the rules docs</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </details>
+        <details class="ds-faq__item">
+          <summary class="ds-faq__summary"><span class="bi"><span lang="zh-CN">支持 Linux 吗？</span><span lang="en">Is Linux supported?</span></span><span class="ds-faq__mark" aria-hidden="true">+</span></summary>
+          <div class="ds-faq__body">
+            <p><span class="bi"><span lang="zh-CN">目前只发布 macOS 和 Windows 版本。</span><span lang="en">Only macOS and Windows builds are published today.</span></span></p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-close" aria-labelledby="close-title">
+    <div class="wrap">
+      <h2 class="ds-close__title" id="close-title"><span class="bi"><span lang="zh-CN">清出几十 GB，只留下你要的。</span><span lang="en">Clear the gigabytes. Keep what you need.</span></span></h2>
+      <a class="ds-cta ds-cta--primary ds-cta--inverse ds-close__cta" href="https://github.com/skana168/DevSweep/releases/latest"><span class="bi"><span lang="zh-CN">下载 DevSweep</span><span lang="en">Download DevSweep</span></span><span class="arrow" aria-hidden="true">↓</span></a>
+    </div>
+  </section>
+</main>
+<footer class="footer ds-footer">
+  <div class="wrap">
+    <span class="footer__mark">Skana<span class="wordmark__dot" aria-hidden="true">.</span></span>
+    <a class="ds-footer__link" href="../"><span class="bi"><span lang="zh-CN">作品集</span><span lang="en">Portfolio</span></span></a>
+    <a class="ds-footer__link" href="https://github.com/skana168/DevSweep">GitHub<span class="arrow" aria-hidden="true">↗</span></a>
+    <span class="footer__copy"><span class="bi"><span lang="zh-CN">© 2026 Skana</span><span lang="en">© 2026 Skana</span></span></span>
+    <span class="footer__colophon"><span class="bi"><span lang="zh-CN">手写 HTML 与 CSS，无追踪。</span><span lang="en">Hand-written HTML and CSS. No trackers.</span></span></span>
+  </div>
+</footer>
+</body>
+</html>
